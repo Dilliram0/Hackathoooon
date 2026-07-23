@@ -22,3 +22,6 @@ button.addEventListener("click", () => {
 
     input.value = "";
 });
+li.addEventListener("click", () => {
+    li.classList.toggle("completed");
+});
