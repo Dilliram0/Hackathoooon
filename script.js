@@ -1,34 +1,41 @@
 const input = document.getElementById("taskInput");
-const button = document.querySelector("button");
+const addBtn = document.getElementById("addBtn");
 const list = document.getElementById("taskList");
+const themeBtn = document.getElementById("themeBtn");
 
-button.addEventListener("click", () => {
+addBtn.addEventListener("click", addTask);
+
+function addTask() {
+    const taskText = input.value.trim();
+
+    if (!taskText) return;
 
     const li = document.createElement("li");
+    li.classList.add("task-item");
 
-    li.textContent = input.value;
+    const taskSpan = document.createElement("span");
+    taskSpan.textContent = taskText;
+
+    taskSpan.addEventListener("click", () => {
+        taskSpan.classList.toggle("completed");
+    });
 
     const deleteBtn = document.createElement("button");
-
     deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("delete-btn");
 
-    deleteBtn.onclick = () => {
+    deleteBtn.addEventListener("click", () => {
         li.remove();
-    };
+    });
 
+    li.appendChild(taskSpan);
     li.appendChild(deleteBtn);
 
     list.appendChild(li);
 
     input.value = "";
-});
-li.addEventListener("click", () => {
-    li.classList.toggle("completed");
-});
+}
 
-const themeBtn = document.getElementById("themeBtn");
-
-themeBtn.onclick = () => {
-
+themeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark");
-};
+});

@@ -1,22 +1,25 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
     <h1>Task Manager</h1>
 
-    <input id="taskInput" placeholder="Enter task" />
-
-    <button>Add Task</button>
+    <div class="input-group">
+        <input id="taskInput" placeholder="Enter a task">
+        <button id="addBtn">Add Task</button>
+    </div>
 
     <ul id="taskList"></ul>
 
-    <button id="themeBtn">
-    Dark Mode
-</button>
+    <button id="themeBtn">🌙 Dark Mode</button>
 
     <script src="script.js"></script>
-  </body>
+
+</body>
 </html>
