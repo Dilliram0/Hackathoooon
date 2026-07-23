@@ -3,78 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD
-  <title>Simple Todo App hyyyyyyyyyyy</title>
-=======
-  <title>Simple Todo App by us</title>
->>>>>>> 8b2c69c (added by us)
+  <title>Aesthetic Minimalist Todo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-border: rgba(255, 255, 255, 0.5);
+      --text-main: #2d3748;
+      --text-muted: #718096;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-light: #eef2ff;
+      --danger-color: #f43f5e;
+      --danger-light: #fff1f2;
+      --radius-lg: 24px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
     * {
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      color: #314e77;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      padding: 20px;
     }
 
     .app {
-      width: min(92vw, 480px);
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      width: min(100%, 460px);
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      padding: 32px 28px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
     }
 
     h1 {
-      text-align: center;
-      margin-top: 0;
-      font-size: 2rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
+    .subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin-top: 16px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      height: 8px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--accent-color);
+      width: 0%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 20px;
+    }
+
+    /* Input Form */
     .todo-form {
       display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: #ffffff;
+      padding: 6px 6px 6px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 12px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font-size: 1rem;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      background: transparent;
+      color: var(--text-main);
+    }
+
+    input[type="text"]::placeholder {
+      color: #a0aec0;
     }
 
     button {
       border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
+      outline: none;
+      border-radius: var(--radius-md);
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     .add-btn {
-      background: #2563eb;
+      background: var(--accent-color);
       color: white;
+      padding: 10px 18px;
+      font-size: 0.9rem;
     }
 
-    .clear-btn {
-      background: #ef4444;
-      color: white;
-      width: 100%;
-      margin-top: 12px;
+    .add-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
+    /* Task List */
     ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 340px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    ul::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.1);
+      border-radius: 4px;
     }
 
     li {
@@ -82,60 +164,162 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 10px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.2s ease;
+      animation: fadeIn 0.25s ease-out;
     }
 
-    li:last-child {
-      border-bottom: none;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    li:hover {
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
 
     .todo-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       flex: 1;
     }
 
+    /* Custom Checkbox */
+    .checkbox-container {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .checkbox-container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: transparent;
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-container:hover input ~ .checkmark {
+      border-color: var(--accent-color);
+    }
+
+    .checkbox-container input:checked ~ .checkmark {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 2px;
+      width: 4px;
+      height: 9px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .checkbox-container input:checked ~ .checkmark:after {
+      display: block;
+    }
+
     .todo-text {
+      font-size: 0.95rem;
       word-break: break-word;
+      transition: color 0.2s ease;
     }
 
     .todo-text.completed {
       text-decoration: line-through;
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     .delete-btn {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 8px 10px;
+      background: transparent;
+      color: #a0aec0;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    li:hover .delete-btn {
+      opacity: 1;
+    }
+
+    .delete-btn:hover {
+      background: var(--danger-light);
+      color: var(--danger-color);
+    }
+
+    .clear-btn {
+      background: transparent;
+      color: var(--text-muted);
+      width: 100%;
+      margin-top: 18px;
+      padding: 10px;
+      font-size: 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+    }
+
+    .clear-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--text-main);
     }
 
     .empty {
       text-align: center;
-      color: #64748b;
-      padding: 12px 0;
+      color: var(--text-muted);
+      padding: 28px 0;
+      font-size: 0.9rem;
+      border: none;
+      background: transparent !important;
     }
   </style>
 </head>
 <body>
-<<<<<<< HEAD
-  <p>THIS IS BCA WORLD and we are here to represent us and our team TEAM MANIACS
-    SO LETS GOOOOOOOOOOOOO.
-  </p>
-  <h1>Hello, world!</h1>
-  <p>This is a simple HTML page.</p>
-=======
+
   <main class="app">
-    <h1>Pratik app</h1>
+    <header>
+      <div class="header-top">
+        <h1>My Tasks</h1>
+        <span class="subtitle" id="task-counter">0/0 completed</span>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </header>
 
     <form class="todo-form" id="todo-form">
-      <input type="text" id="todo-input" placeholder="Add a new task..." required />
-      <button class="add-btn" type="submit">Add</button>
+      <input type="text" id="todo-input" placeholder="What needs to be done?" required autocomplete="off" />
+      <button class="add-btn" type="submit">Add Task</button>
     </form>
 
     <ul id="todo-list"></ul>
+    
     <button class="clear-btn" id="clear-btn" type="button">Clear Completed</button>
   </main>
 
@@ -144,6 +328,8 @@
     const input = document.getElementById('todo-input');
     const list = document.getElementById('todo-list');
     const clearBtn = document.getElementById('clear-btn');
+    const taskCounter = document.getElementById('task-counter');
+    const progressBar = document.getElementById('progress-bar');
 
     const STORAGE_KEY = 'simple-todo-app';
     let todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -152,14 +338,25 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
     }
 
+    function updateStats() {
+      const total = todos.length;
+      const completed = todos.filter(t => t.completed).length;
+      
+      taskCounter.textContent = `${completed}/${total} completed`;
+      
+      const percentage = total === 0 ? 0 : (completed / total) * 100;
+      progressBar.style.width = `${percentage}%`;
+    }
+
     function renderTodos() {
       list.innerHTML = '';
 
       if (todos.length === 0) {
         const empty = document.createElement('li');
         empty.className = 'empty';
-        empty.textContent = 'No tasks yet. Add one above!';
+        empty.textContent = '✨ You’re all caught up!';
         list.appendChild(empty);
+        updateStats();
         return;
       }
 
@@ -169,9 +366,20 @@
         const left = document.createElement('div');
         left.className = 'todo-left';
 
+        // Checkbox wrapper
+        const label = document.createElement('label');
+        label.className = 'checkbox-container';
+
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = todo.completed;
+        
+        const checkmark = document.createElement('span');
+        checkmark.className = 'checkmark';
+
+        label.appendChild(checkbox);
+        label.appendChild(checkmark);
+
         checkbox.addEventListener('change', () => {
           todo.completed = checkbox.checked;
           saveTodos();
@@ -185,28 +393,35 @@
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-btn';
         deleteBtn.type = 'button';
-        deleteBtn.textContent = 'Delete';
+        deleteBtn.ariaLabel = 'Delete task';
+        deleteBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        `;
+        
         deleteBtn.addEventListener('click', () => {
           todos = todos.filter((item) => item.id !== todo.id);
           saveTodos();
           renderTodos();
         });
 
-        left.appendChild(checkbox);
+        left.appendChild(label);
         left.appendChild(text);
         li.appendChild(left);
         li.appendChild(deleteBtn);
         list.appendChild(li);
       });
+
+      updateStats();
     }
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const text = input.value.trim();
 
-      if (!text) {
-        return;
-      }
+      if (!text) return;
 
       todos.unshift({
         id: Date.now(),
