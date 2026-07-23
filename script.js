@@ -8,6 +8,16 @@ button.addEventListener("click", () => {
 
     li.textContent = input.value;
 
+    const deleteBtn = document.createElement("button");
+
+    deleteBtn.textContent = "Delete";
+
+    deleteBtn.onclick = () => {
+        li.remove();
+    };
+
+    li.appendChild(deleteBtn);
+
     list.appendChild(li);
 
     input.value = "";
