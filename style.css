@@ -13,3 +13,8 @@ button{
 .completed{
     text-decoration: line-through;
 }
+
+.dark{
+    background:black;
+    color:white;
+}

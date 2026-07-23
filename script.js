@@ -25,3 +25,10 @@ button.addEventListener("click", () => {
 li.addEventListener("click", () => {
     li.classList.toggle("completed");
 });
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.onclick = () => {
+
+    document.body.classList.toggle("dark");
+};
